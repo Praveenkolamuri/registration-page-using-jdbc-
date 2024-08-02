@@ -18,17 +18,28 @@
         background-size: cover;
         background-image: url('https://images.alphacoders.com/136/thumb-1920-1363137.png');
     }
+    body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+            z-index: -1;
+        }
     h1 {
         text-align: center;
         margin-top: 20px;
         color: white;
+        
     }
     table {
         width: 80%;
         margin: 20px auto;
         border-collapse: collapse;
        background-color: transparent glass;
-             backdrop-filter: blur(2px);
+             backdrop-filter: blur(5px);
              border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 10px;
             overflow: hidden;
@@ -99,7 +110,8 @@
                 <td><%=a.getPassword()%></td>
                 <td><%=a.getConfirmpassword()%></td>
                 <td>
-                    <button>Update</button>
+                       <a href="update.jsp?id=<%=a.getId()%>"><button>Update</button></a>
+                   
                 </td>
                 <td><a href="delete?id=<%=a.getId()%>"><button class="btn btn-danger">Delete</button></a></td>
             </tr>
