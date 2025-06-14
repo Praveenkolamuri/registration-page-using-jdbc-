@@ -1,0 +1,11 @@
+{
+  "name": "animeworld-setup",
+  "version": "1.0.0",
+  "description": "Setup utilities for Java web application",
+  "scripts": {
+    "setup": "echo 'Java web application setup'",
+    "build": "echo 'Building Java application...'",
+    "deploy": "echo 'Deploy to Tomcat server'"
+  },
+  "devDependencies": {}
+}
