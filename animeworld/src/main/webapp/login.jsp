@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Register - Anime World</title>
+    <title>Login - Anime World</title>
     <style>
         body {
             margin: 0;
@@ -36,7 +36,7 @@
             display: flex;
             max-width: 700px;
             width: 100%;
-            height: 500px;
+            height: 450px;
             background-color: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(1px);
             border: 2px solid rgba(255, 255, 255, 0.5);
@@ -75,15 +75,15 @@
 
         .title h1 {
             font-size: 50px;
-            margin-left:750px;
+            margin-left: 750px;
             padding-bottom: 10px;
         }
 
         .title p {
             font-size: 28px;
             margin-top: 20px;
-            margin-left:750px;
-            padding:10px;
+            margin-left: 750px;
+            padding: 10px;
             color: #ffffff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
@@ -108,7 +108,6 @@
             flex-direction: column;
         }
 
-        .container .right input[type="text"],
         .container .right input[type="email"],
         .container .right input[type="password"] {
             padding: 10px;
@@ -122,10 +121,10 @@
             margin-top: 20px;
             border: none;
             border-radius: 5px;
-            background:#DF1C58;
+            background: #DF1C58;
             color: black;
             font-size: 16px;
-            font-weight:bold;
+            font-weight: bold;
             cursor: pointer;
         }
 
@@ -165,49 +164,18 @@
             text-align: center;
         }
     </style>
-    <script>
-        function validateForm() {
-            var name = document.forms["registerForm"]["name"].value;
-            var email = document.forms["registerForm"]["email"].value;
-            var password = document.forms["registerForm"]["password"].value;
-            var confirmpassword = document.forms["registerForm"]["confirmpassword"].value;
-            
-            if (name == "" || email == "" || password == "" || confirmpassword == "") {
-                alert("All fields must be filled out");
-                return false;
-            }
-            
-            if (password != confirmpassword) {
-                alert("Passwords do not match");
-                return false;
-            }
-            
-            if (password.length < 6) {
-                alert("Password must be at least 6 characters long");
-                return false;
-            }
-            
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert("Please enter a valid email address");
-                return false;
-            }
-            
-            return true;
-        }
-    </script>
 </head>
 <body>
 <div class="title">
-    <h1>Welcome to Anime World</h1>
-    <p>Join our community and explore the amazing world of anime. Discover new series, connect with other fans, and much more!</p>
+    <h1>Welcome Back to Anime World</h1>
+    <p>Sign in to continue your anime journey and connect with fellow fans!</p>
 </div>
 <div class="container">
     <div class="left">
         <!-- Background image section -->
     </div>
     <div class="right">
-        <h2>Enter the World of Anime</h2>
+        <h2>Sign In</h2>
         
         <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
         <% if (errorMessage != null) { %>
@@ -219,14 +187,12 @@
             <div class="success-message"><%= successMessage %></div>
         <% } %>
         
-        <form name="registerForm" action="register" method="post" onsubmit="return validateForm()">
-            <input type="text" placeholder="Enter name" name="name" required>
+        <form action="login" method="post">
             <input type="email" placeholder="Enter email" name="email" required>
             <input type="password" placeholder="Enter password" name="password" required>
-            <input type="password" placeholder="Enter confirm password" name="confirmpassword" required>
-            <button type="submit">Register</button>
+            <button type="submit">Sign In</button>
         </form>
-        <a href="login.jsp">Already have an account? Sign in</a>
+        <a href="register.jsp">Don't have an account? Register here</a>
     </div>
 </div>
 </body>

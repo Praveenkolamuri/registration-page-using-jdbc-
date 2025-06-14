@@ -36,29 +36,6 @@ public class animeservices {
 		}
 
 		// Method for getting data
-//		public List<animemodels> getall(){
-//			List<animemodels> ll = new ArrayList<animemodels>();
-//			animemodels s = null;
-//			try {
-//				String sql = "select * from animeregistration";
-//				PreparedStatement pmst = conn.prepareStatement(sql);
-//				ResultSet RS = pmst.executeQuery();
-//				while (RS.next()) {
-//					s = new animemodels();
-//					s.setId(RS.getInt(1));
-//					s.setName(RS.getString(2));
-//					s.setEmail(RS.getString(3));
-//					s.setPassword(RS.getString(4));
-//					s.setConfirmpassword(RS.getString(5));
-//					ll.add(s);		
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			return ll;
-//		}
-		
-		
 		public List<animemodels> getall(){
 			
 			List<animemodels> ll = new ArrayList<animemodels>();
@@ -151,8 +128,8 @@ public class animeservices {
 		    return f;
 		}
 
-		// Method for update data through Id
-		public boolean updateswiggy(animemodels sw) {
+		// Method for update data through Id - FIXED METHOD NAME
+		public boolean updateanime(animemodels sw) {
 			boolean f = false;
 			try {
 				String sql = "update animeregistration set name = ?, email = ?, password = ?,confirmpassword = ? where id = ?";
@@ -172,5 +149,46 @@ public class animeservices {
 			return f;
 		}
 		
+		// Method for user authentication (login)
+		public animemodels authenticateUser(String email, String password) {
+			animemodels user = null;
+			try {
+				String sql = "SELECT * FROM animeregistration WHERE email = ? AND password = ?";
+				PreparedStatement pmst = conn.prepareStatement(sql);
+				pmst.setString(1, email);
+				pmst.setString(2, password);
+				ResultSet rs = pmst.executeQuery();
+				
+				if (rs.next()) {
+					user = new animemodels();
+					user.setId(rs.getInt(1));
+					user.setName(rs.getString(2));
+					user.setEmail(rs.getString(3));
+					user.setPassword(rs.getString(4));
+					user.setConfirmpassword(rs.getString(5));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return user;
+		}
+		
+		// Method to check if email already exists
+		public boolean emailExists(String email) {
+			boolean exists = false;
+			try {
+				String sql = "SELECT COUNT(*) FROM animeregistration WHERE email = ?";
+				PreparedStatement pmst = conn.prepareStatement(sql);
+				pmst.setString(1, email);
+				ResultSet rs = pmst.executeQuery();
+				
+				if (rs.next() && rs.getInt(1) > 0) {
+					exists = true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return exists;
+		}
+		
 	}
-
